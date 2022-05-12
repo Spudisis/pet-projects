@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/normalize.css">
+	<link rel="stylesheet" href="/styles/style.css" >
+    <title>timer</title>
+</head>
+<body class="timer">
+    <div id="counter" class="timer__counter">
+        <span>
+            <input type="number" id="hour" max="59" min="0" value="00" inputmode="numeric" aria-invalid="false" autocomplete="off" class="test_input"> 
+        </span>
+        <span>
+            <input type="number" id="min" max="59" min="0" value="00" inputmode="numeric" aria-invalid="false" autocomplete="off" class="test_input"> 
+        </span>
+        <span>
+            <input type="number"  id="sec" max="59" min="0" value="00" inputmode="numeric" aria-invalid="false" autocomplete="off" class="test_input"> 
+        </span>
+        
+    </div>
+    <div class="timer__counter">
+        <button id="timer_start" class="view">Старт</button>
+        <button id="timer_stop" class="hide">Стоп</button>
+    </div>
+
+    <script src="./timer.js"></script>
+</body>
+</html>
