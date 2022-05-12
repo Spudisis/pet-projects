@@ -4,28 +4,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/normalize.css">
-	<link rel="stylesheet" href="/styles/style.css" >
+    <link rel="stylesheet" href="../styles/normalize.css">
+	<link rel="stylesheet" href="../styles/style.css" >
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
     <title>timer</title>
 </head>
 <body class="timer">
-    <div id="counter" class="timer__counter">
-        <span>
-            <input type="number" id="hour" max="59" min="0" value="00" inputmode="numeric" aria-invalid="false" autocomplete="off" class="test_input"> 
-        </span>
-        <span>
-            <input type="number" id="min" max="59" min="0" value="00" inputmode="numeric" aria-invalid="false" autocomplete="off" class="test_input"> 
-        </span>
-        <span>
-            <input type="number"  id="sec" max="59" min="0" value="00" inputmode="numeric" aria-invalid="false" autocomplete="off" class="test_input"> 
-        </span>
-        
+    <div id="counter">
+        <div class="timer__counter">   
+            <div>
+                <div class='numberCounter'>
+                    <span id="day">43</span>
+                </div>
+                <div class="timeIdentf">
+                    <p>days</p>
+                </div>
+            </div>
+            <div>
+                <div class='numberCounter'>
+                    <span id="hour">00</span> 
+                </div>
+                <div class="timeIdentf">
+                    <p>hours</p>
+                </div>
+            </div>
+            <div>
+                <div class='numberCounter'>
+                    <span id="min"> 00</span>
+                </div>
+                <div class="timeIdentf">
+                    <p>mins</p>
+                </div>
+            </div>
+            <div>   
+                <div class='numberCounter'>
+                    <span id="sec"> 01</span>
+                </div>
+                <div class="timeIdentf">
+                    <p>secs</p>
+                </div>
+            </div>  
+        </div>
+        <div class="timer__buttons">
+            <button id="timer_start" class="view">Старт</button>
+            <button id="timer_stop" class="hide">Стоп</button>
+        </div>
     </div>
-    <div class="timer__counter">
-        <button id="timer_start" class="view">Старт</button>
-        <button id="timer_stop" class="hide">Стоп</button>
-    </div>
+    
 
     <script src="./timer.js"></script>
+    <script src="./timer_start.js"></script>
 </body>
 </html>

@@ -1,106 +1,115 @@
-//timer
+function Timer() {
+    this.download = function (elId) {
+        const elSelector = '#' + elId;
+        const el = document.querySelector(elSelector);
+        this.data = new Date(2023, 3, 6, 0, 0)
+        this.now = new Date();
+        this.day = el.querySelector("#day");
+        this.hour = el.querySelector("#hour");
+        this.min = el.querySelector('#min');
+        this.sec = el.querySelector('#sec');
+        this.start = el.querySelector('#timer_start');
+        this.stop = el.querySelector('#timer_stop');
 
-let timerID;
-const hourCount = document.querySelector("#hour");
-const minCount = document.querySelector('#min');
-const secCount = document.querySelector('#sec');
-
-const btnTimerStart = document.querySelector('#timer_start');
-const btnTimerStop = document.querySelector('#timer_stop');
-
-
-
-btnTimerStart.onclick = function() {
-    
-    let sec = secCount.value;
-    let min = minCount.value;
-    let hour = hourCount.value;
-
-    if (secCount.value = ""){
-        secCount.value = 0;
+        this.start.addEventListener('click', (e) => {
+            this.startTimer(e);
+        });
+        this.stop.addEventListener('click', (e) => {
+            this.stopTimer(e);
+        });
     }
-    if (minCount.value = ""){
-        minCount.value = 0;
-    }
-    if (hourCount.value = ""){
-        hourCount.value = 0;
-    }
-    if (sec, min >59){
-        console.log('больше')
-    }
-    else{
-        this.className = "hide";
-        btnTimerStop.className = "view";
-        timerID = setInterval(function () {
-            if (sec==0 && min ==0 && hour ==0){
-                StopTimerFunc();
-            }
-            if (sec<0 && min!=0 && hour !=0){
-                sec=59;
-                min--;
-            }
-            if (sec<0 && min!=0){
-                sec=59;
-                min--;
-            }
-            if (sec<0 && min==0 && hour!=0){
-                min=59;
-                sec=59;
-                hour--;
-            }
-            if (0<=sec && sec<=9){
-                secCount.value = "0" + sec;
-                sec--;    
-                console.log('gg')
-            }
-            else{
-                secCount.value = sec;
-                sec--;
-                console.log('gd')
-            }
-            
-            
-            if(min<=9 && minCount.value!=00){
-                minCount.value = "0" + min;
+    this.calcTime = function () {
 
-            }
-
-            else{
-                minCount.value =  min;
-            }
-            if(hour<=9 && hourCount.value!=00){
-                hourCount.value = "0" + hour;
-            }
-            else{
-                hourCount.value = hour;
-            }
-        }, 1000) 
+        this.minus = this.data - this.now;
+        this.day.innerText = Math.trunc(this.minus / 1000 / 60 / 60 / 24);
+        this.hour.innerText = Math.trunc(this.minus / 1000 / 60 / 60 - this.day.innerText * 24);
+        this.min.innerText = Math.trunc((this.minus / 1000 / 60 - Math.trunc(this.minus / 1000 / 60 / 60) * 60));
+        this.sec.innerText = Math.trunc(this.minus / 1000 - Math.trunc(this.minus / 1000 / 60) * 60);
+        this.runTimer();
     }
-    
-};
+    this.startTimer = function (e) {
+        this.start.className = 'hide'
+        this.stop.className = 'view'
+        this.calcTime();
+    }
+    this.stopTimer = function (e) {
+        this.start.className = 'view'
+        this.stop.className = 'hide'
+        clearInterval(timerToDo);
+    }
+    this.secCount = function () {
+        if (this.sec.innerText <= 10) {
+            this.sec.innerText = "0" + (+this.sec.innerText - 1);
+        }
+        else {
+            this.sec.innerText = +this.sec.innerText - 1;
+        }
+    }
+    this.minCount = function () {
+        if (this.min.innerText <= 10) {
+            this.min.innerText = "0" + (+this.min.innerText - 1);
+        }
+        else {
+            this.min.innerText = +this.min.innerText - 1;
+        }
+    }
+    this.hourCount = function () {
+        if (this.hour.innerText <= 10) {
+            this.hour.innerText = "0" + (+this.hour.innerText - 1);
+        }
+        else {
+            this.hour.innerText = +this.hour.innerText - 1;
+        }
+    }
+    this.dayCount = function () {
+        if (this.day.innerText <= 1) {
+            this.day.remove();
+            return false;
+        }
+        if (this.day.innerText <= 10) {
+            this.day.innerText = "0" + (+this.day.innerText - 1);
+        }
+        else {
+            this.day.innerText = +this.day.innerText - 1;
+        }
+    }
+    this.runTimer = function () {
+        timerToDo = setInterval(() => {
+            this.checkContinueTimer();
+            this.secCount();
+            this.checkStopTimer();
+        }, 1000)
+    }
+    this.checkStopTimer = function () {
+        if (this.sec.innerText <= 0 && this.min.innerText <= 0 && this.hour.innerText <= 0 && this.day.innerText <= 0) {
+            this.stopTimer();
+        }
+    }
+    this.checkContinueTimer = function () {
+        if (this.sec.innerText <= 0 && this.min.innerText <= 0 && this.hour.innerText <= 0 && this.day.innerText != 0) {
+            this.sec.innerText = 60;
+            this.min.innerText = 59;
+            this.hour.innerText = 23;
+            this.dayCount();
+        }
+        if (this.sec.innerText <= 0 && this.min.innerText <= 0 && this.hour.innerText != 0) {
+            this.sec.innerText = 60;
+            this.min.innerText = 59;
+            this.hourCount();
+        }
+        if (this.sec.innerText <= 0 && this.min.innerText != 0) {
+            this.sec.innerText = 60;
+            this.minCount();
+        }
+    }
+    this.animationCounter = function () {
 
-secCount.onclick = function(){
-    secCount.Value = sec++;
+    }
 }
 
-btnTimerStop.onclick = function () {
-    
-    StopTimerFunc();
-};
-
-const StopTimerFunc = function () {
-    clearInterval(timerID);
-    btnTimerStart.className = "view";
-    btnTimerStop.className = "hide";
+const TimerCreate = {
+    timerCreate: function () {
+        const newTimer = new Timer();
+        return newTimer;
+    }
 }
-
-secCount.onclick = function(){
-    this.value = "";
-}
-minCount.onclick = function(){
-    this.value = "";
-}
-hourCount.onclick = function(){
-    this.value = "";
-}
-
