@@ -2,7 +2,7 @@ $bgcStopwatch: rgb(21, 20, 20)
 
 body
     background-color: #f8f8ff
-
+    font-family: 'Jost', sans-serif
 h1
     font-size: 70px
     font-weight: 600
@@ -27,21 +27,23 @@ h1
 
 .projects_cards
     display: flex
-    justify-content: space-evenly
-
+    justify-content: center
+    flex-wrap: wrap
 .card
     border-radius: 10px
     width: 100%
+
 .click_card
+    margin-left: 10px
     display: flex
     flex-direction: column
     align-items: center
-    max-width: 30%
-    max-height: 30%
+    max-width: 10%
+    max-height: 10%
     text-decoration: none
     color: white
     background-color: black
-    font-size: 30px
+    font-size: 20px
     font-weight: bold
     border: 1px solid black
     padding: 0px
@@ -101,28 +103,67 @@ h1
 .stopwatch_swap
     width: 7%
 // Таймер
+#counter
+    display: flex
+    flex-direction: column
+    align-items: center
+.timer__counter
+    display: flex
+    width: 100%
+    height: 500px
 
-#timer_start
+    justify-content: center
 
-.timer
-    margin: 0
-    padding: 0px
+    align-items: center
+    background-color: black
+.numberCounter
+    width: 80px
+    height: 90px
+    border: 1px solid black
+    border-radius: 10%
+    background-color: white
+    display: flex
+    justify-content: center
+    align-items: center
+    margin-left: 20px
+    box-sizing: border-box
 
-    &__counter
-        justify-content: center
-        display: flex
-    &__time
-        font-size: 100px
-.test_input
-    width: 100px
-    height: 120px
-    font-size: 90px
-    text-align: center
+.timeIdentf
+    margin-left: 20px
+    color: white
+    display: flex
+    justify-content: center
+    align-items: center
+.timer__counter span
+    font-size: 60px
+    color: black
 
-.img_slider
-    width: 30%
-    height: 400px
-
+//слайдер
 .flex
     display: flex
     justify-content: center
+
+.img_slider
+    width: 250px
+    height: 200px
+
+//todoapp
+
+.todo
+    display: flex
+    flex-direction: row
+    &__input
+
+    &__text
+
+    &__add
+
+    &__options
+[data-todo-option="active"] .todo__item:not([data-todo-state="active"]),
+[data-todo-option="completed"] .todo__item:not([data-todo-state="completed"]),
+[data-todo-option="deleted"] .todo__item:not([data-todo-state="deleted"])
+    display: none
+[data-todo-state="active"] .todo__action_restore,
+[data-todo-state="completed"] .todo__action_complete,
+[data-todo-state="deleted"] .todo__action_complete
+    display: none
