@@ -1,4 +1,5 @@
 function Slider() {
+
     this.imagesUrls = [];
     this.back = null;
     this.next = null;

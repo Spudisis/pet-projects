@@ -92,17 +92,36 @@ h1 {
       -ms-flex-direction: column;
           flex-direction: column;
   color: white;
-  margin-top: 9%;
+  margin-top: 50px;
 }
 
 .stopwatch_bgc {
-  background-color: #151414;
+  background-image: url(../img/manyclock.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+.blur {
+  background: rgba(0, 0, 0, 0.8);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .inputLi {
   list-style-type: none;
   font-size: 24px;
   padding: 0px;
+  color: white;
+  margin-left: 20px;
 }
 
 .counter {
@@ -149,11 +168,7 @@ h1 {
 
 .swopwatch_h1 {
   color: white;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 86%;
-  margin: auto;
+  margin: 0 auto;
 }
 
 .stopwatch_swap {
@@ -239,27 +254,5 @@ h1 {
 .img_slider {
   width: 250px;
   height: 200px;
-}
-
-.todo {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-}
-
-[data-todo-option="active"] .todo__item:not([data-todo-state="active"]),
-[data-todo-option="completed"] .todo__item:not([data-todo-state="completed"]),
-[data-todo-option="deleted"] .todo__item:not([data-todo-state="deleted"]) {
-  display: none;
-}
-
-[data-todo-state="active"] .todo__action_restore,
-[data-todo-state="completed"] .todo__action_complete,
-[data-todo-state="deleted"] .todo__action_complete {
-  display: none;
 }
 /*# sourceMappingURL=style.css.map */

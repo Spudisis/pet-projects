@@ -9,25 +9,22 @@
     <title>stopWatch</title>
 </head>
 <body class="stopwatch_bgc">
-    <header class="header">
-        <a href="/index.html" class="return_a"><img src="/img/backWhite.png" alt="return" class="return_main"></a>
-        <h1 class="swopwatch_h1">Секундомер</h1>
-        <a href="" class="stopwatch_swap"></a>
-    </header>
-        
-    
-    <main class="general">
-        <div class="counter" id="counter">00:00:00.0</div>
-        <div class="allButton">
-            <button class="button view" id="start">Старт</button>
-            <button class="button hide"  id="pause">Пауза</button>
-            <button class="button"  id="reset">Сброс</button>
-            <button class="button hide" id="interval">Круг</button>
-        </div>
-        <ol id="inputLi" class="inputLi">
-        </ol>  
-    </main>
-    
+    <div class="blur">
+            <header class="header">
+                <h1 class="swopwatch_h1">Секундомер</h1>
+            </header>      
+            <main class="general">
+                <div class="counter" id="counter">00:00:00.0</div>
+                <div class="allButton">
+                    <button class="button view" id="start">Старт</button>
+                    <button class="button hide"  id="pause">Пауза</button>
+                    <button class="button"  id="reset">Сброс</button>
+                    <button class="button hide" id="interval">Круг</button>
+                </div>
+                <ol id="inputLi" class="inputLi"></ol>    
+            </main>
+             
+    </div>
                 
     <script src="./stopwatch.js"></script>
 </body>
