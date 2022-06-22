@@ -172,7 +172,20 @@ const calcNowTime = function (p) {
     let NewMin = Math.trunc((p - NewHour) / 60000)
     let NewSec = Math.trunc((p - NewHour - NewMin) / 1000)
     let NewMsec = Math.trunc((p - NewHour - NewMin - NewSec) / 100)
-    let timeText = "0" + NewHour + ":" + 0 + NewMin + ":" + 0 + NewSec + "." + NewMsec
+    if (NewHour.toString().length < 2) {
+        NewHour = '0' + NewHour
+    }
+    if (NewMin.toString().length < 2) {
+        NewMin = '0' + NewMin
+    }
+    if (NewSec.toString().length < 2) {
+        NewSec = '0' + NewSec
+    }
+    if (NewMin.toString().length < 2) {
+        NewMin = '0' + NewMin
+    }
+    let b = NewMsec.toString()
+    let timeText = NewHour + ":" + NewMin + ":" + NewSec + "." + b[0]
     return (timeText)
 }
 
