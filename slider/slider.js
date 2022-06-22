@@ -39,6 +39,11 @@ function Slider() {
         }
         this.img_sliders.src = this.imagesUrls[this.count];
     }
+
+    this.timer = setInterval(() => {
+        this.showNextImg()
+    }, 5000)
+
     this.showNextImg = function (e) {
         this.count++;
         if (this.count > this.lenghtImagesUrls - 1) {
