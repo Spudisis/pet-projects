@@ -3,6 +3,10 @@
 const counterElement = document.querySelector('#counter');
 const counterInterval = document.querySelector('.interval');
 
+const fastest = document.querySelector('#fastest')
+const lowest = document.querySelector('#lowest')
+const average = document.querySelector('#average')
+
 let msec = 00;
 let sec = 00;
 let min = 00;
@@ -10,8 +14,12 @@ let hour = 00;
 let timerID;
 let n = 1;
 
-const btnStart = document.querySelector('#start');
+let minus = 0
+let calcMin = 0
+let calcMax = 0
 
+
+const btnStart = document.querySelector('#start');
 btnStart.onclick = function () {
     this.className = "button hide";
     btnStop.className = "button view";
@@ -104,7 +112,13 @@ btnReset.onclick = function () {
     sec = 0;
     min = 0;
     hour = 0;
+    minus = 0
+    calcMin = 0
+    calcMax = 0
     counterElement.innerText = "0" + hour + ":" + 0 + min + ":" + 0 + sec + "." + msec;
+    lowest.innerText = '';
+    fastest.innerText = '';
+    average.innerText = '';
     clearInterval(timerID);
     if (n > 20) {
         n = 21
@@ -125,10 +139,41 @@ btnInterval.onclick = function () {
     if (n > 20) {
         deleteChild(n - (n - 2));
     }
+
+    calc(n)
+
     n++;
 }
 
+const calc = function (n) {
+    const calcTime = msec * 100 + sec * 1000 + min * 60000 + hour * 60000 * 60
+    const calcMsec = calcTime - minus
+    minus += calcMsec
+    calcNowTime(calcMsec)
+    if (n == 1) {
+        calcMin = calcMsec
+        calcMax = calcMsec
+    }
+    if (calcMsec <= calcMin) {
+        calcMin = calcMsec
+        fastest.innerText = "Быстрейший круг " + n + ": " + calcNowTime(calcMsec);
+    }
+    if (calcMsec >= calcMax) {
+        calcMax = calcMsec
+        lowest.innerText = "Медленный круг " + n + ": " + calcNowTime(calcMsec);
+    }
+    average.innerText = "Круг в среднем: " + calcNowTime(Math.trunc(calcTime / n))
 
 
+}
+
+const calcNowTime = function (p) {
+    let NewHour = Math.trunc(p / (60 * 60000))
+    let NewMin = Math.trunc((p - NewHour) / 60000)
+    let NewSec = Math.trunc((p - NewHour - NewMin) / 1000)
+    let NewMsec = Math.trunc((p - NewHour - NewMin - NewSec) / 100)
+    let timeText = "0" + NewHour + ":" + 0 + NewMin + ":" + 0 + NewSec + "." + NewMsec
+    return (timeText)
+}
 
 
