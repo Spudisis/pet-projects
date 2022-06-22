@@ -14,6 +14,7 @@ h1 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  margin: 0px 0px 50px;
 }
 
 .return_main {
@@ -38,6 +39,10 @@ h1 {
   display: flex;
 }
 
+.header_index {
+  background-color: white;
+}
+
 .projects_cards {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -56,6 +61,7 @@ h1 {
 
 .click_card {
   margin-left: 10px;
+  margin-bottom: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -66,14 +72,13 @@ h1 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  max-width: 10%;
-  max-height: 10%;
+  max-width: 200px;
+  max-height: 300px;
   text-decoration: none;
   color: white;
   background-color: black;
   font-size: 20px;
   font-weight: bold;
-  border: 1px solid black;
   padding: 0px;
   border-radius: 10px;
 }

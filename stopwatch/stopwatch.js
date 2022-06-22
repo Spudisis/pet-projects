@@ -114,8 +114,6 @@ btnReset.onclick = function () {
 }
 
 
-
-
 const btnInterval = document.querySelector('#interval');
 btnInterval.onclick = function () {
 
