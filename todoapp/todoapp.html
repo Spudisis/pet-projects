@@ -1,25 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>todoapp</title>
-    <link rel="stylesheet" href="../styles/normalize.css">
-	<link rel="stylesheet" href="../styles/style.css" >
-</head>
-<body>
+    <link rel="stylesheet" href="../styles/normalize.css" />
+    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
     <div class="todo">
-        <div class="todo__input">
-            <input type="text" class="todo__text">
-            <span class="todo__add"></span>
+      <div class="todo__input">
+        <div class="block">
+          <label>Задача</label>
+          <input
+            class="todo__text"
+            type="text"
+            id="todoAdd"
+            placeholder="Что делаем?"
+          />
         </div>
-        <select class="todo__options">
-            <option value="active">активные</option>
-            <option value="completed">завершённые</option>
-            <option value="deleted">удалённые</option>
-        </select>
-        <ul class="todo__items" data-todo-option="active"></ul>
+        <div class="block">
+          <label>Срочно?</label>
+          <select name="" id="selectHard">
+            <option value="3">Дедлайн</option>
+            <option value="2" selected>Надо</option>
+            <option value="1">Meh</option>
+          </select>
+        </div>
+        <div class="block">
+          <button id="sendToDo"><b>Добавить</b></button>
+        </div>
+      </div>
+      <div class="trash" id="trash">
+        <img src="../img/trash.png" alt="" />
+      </div>
+      <div id="list" class="list"></div>
     </div>
-</body>
+  </body>
+  <script src="./todo.js"></script>
 </html>

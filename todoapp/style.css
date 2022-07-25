@@ -1,0 +1,195 @@
+body {
+  background-color: rgba(255, 157, 0, 0.604);
+  overflow-x: hidden;
+}
+
+.todo {
+  max-width: 1280px;
+  float: none;
+  margin: 0 auto;
+}
+.todo__input {
+  width: 600px;
+  height: 200px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 30px;
+  background-color: rgba(255, 157, 0, 0.604);
+  box-shadow: 5px 5px 2px 1px rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+}
+.block button {
+  height: 50px;
+  width: 100px;
+  border-radius: 15px;
+  border: none;
+  background-color: rgba(255, 157, 0, 0.853);
+  cursor: pointer;
+}
+
+.block button:hover {
+  background-color: rgb(255, 111, 0);
+  box-shadow: 5px 5px 2px 1px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+}
+.block label {
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+.block input {
+  border: none;
+  background-color: inherit;
+  border-bottom: 1px solid black;
+  display: inline;
+  outline: none;
+}
+.list {
+  width: 600px;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+.task {
+  width: 600px;
+  min-height: 100px;
+  display: grid;
+  grid-template-columns: 70% 30%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background-color: rgb(241, 239, 239);
+  box-shadow: 5px 5px 2px 1px rgba(0, 0, 0, 0.2);
+}
+/* .task:hover {
+  animation-duration: 0.5s;
+  animation-name: taskUp;
+  animation-fill-mode: forwards;
+  animation-delay: 0.5s;
+} */
+@keyframes taskUp {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.1);
+    font-size: 20px;
+    box-shadow: 10px 10px 2px 1px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+  }
+}
+.taskText {
+  text-indent: 1.5em;
+  padding: 10px;
+  word-wrap: break-word;
+}
+.deleteTaskButton {
+  min-height: 30px;
+  border-radius: 5px;
+  border: 0px;
+  cursor: pointer;
+  font-size: 20px;
+}
+.deleteTask {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+select {
+  width: 150px;
+  outline: none;
+  background-color: inherit;
+  border: none;
+  border-bottom: 1px solid black;
+  display: inline;
+  cursor: pointer;
+}
+option {
+  min-height: 50px;
+}
+select option[value="1"] {
+  background: rgba(38, 142, 0, 0.3);
+}
+
+select option[value="2"] {
+  background: rgba(192, 195, 0, 0.3);
+}
+
+select option[value="3"] {
+  background: rgba(191, 2, 2, 0.3);
+}
+
+.red {
+  background: rgba(191, 2, 2, 0.5);
+}
+
+.green {
+  background: rgba(38, 142, 0, 0.5);
+}
+.yellow {
+  background: rgba(192, 195, 0, 0.5);
+}
+
+.deleteAnim {
+  animation-duration: 1s;
+  animation-name: deleteElem;
+  animation-fill-mode: forwards;
+}
+@keyframes deleteElem {
+  from {
+  }
+
+  to {
+    min-height: 80px;
+    margin-left: 700px;
+  }
+}
+
+.trash {
+  display: none;
+}
+.trashAnim {
+  animation-duration: 2s;
+  animation-name: trashAnimation;
+  animation-fill-mode: forwards;
+}
+@keyframes trashAnimation {
+  0% {
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    right: 50px;
+    z-index: 10;
+  }
+
+  50% {
+    right: 0px;
+    display: block;
+    position: absolute;
+    bottom: 500px;
+    z-index: 10;
+    transform: rotate(-90deg);
+  }
+  99% {
+    display: block;
+    position: absolute;
+    bottom: -100px;
+    right: 0px;
+    z-index: 10;
+    transform: rotate(-600deg);
+  }
+  100% {
+    position: absolute;
+    bottom: -100px;
+    right: 0px;
+    z-index: 10;
+    display: none;
+  }
+}
+.trashAnim img {
+  height: 150px;
+}

@@ -169,6 +169,8 @@ h1
 .two-slider
     display: flex
     justify-content: center
+    align-items: center
+    flex-direction: column
     &__slider
         width: 250px
         height: 200px
@@ -176,10 +178,20 @@ h1
         overflow: hidden
     button
 
+    &__block
+        display: flex
+
 .slider-line
     width: 1250px
     display: flex
     position: relative
     left: 0px
     transition: all ease 1s
+
+.circle
+    border: 2px solid black
+    border-radius: 50%
+    width: 15px
+    height: 15px
+    color: black
 //todoapp

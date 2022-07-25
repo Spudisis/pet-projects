@@ -1,5 +1,6 @@
 let off = 0;
 const sliderLine = document.querySelector('.slider-line')
+let countEl = sliderLine.childElementCount
 function next() {
     off += 250
     off > 1000 ? off = 0 : off
@@ -20,3 +21,5 @@ let timer = setInterval(() => {
     next()
 
 }, 5000)
+
+console.log()
