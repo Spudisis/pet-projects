@@ -5,11 +5,13 @@ body {
 
 .todo {
   max-width: 1280px;
-  float: none;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .todo__input {
-  width: 600px;
+  width: 800px;
   height: 200px;
   display: flex;
   justify-content: space-around;
@@ -19,7 +21,9 @@ body {
   box-shadow: 5px 5px 2px 1px rgba(0, 0, 0, 0.2);
   margin: 0 auto;
 }
-
+.todoshki {
+  display: flex;
+}
 .block {
   display: flex;
   flex-direction: column;
@@ -50,11 +54,69 @@ body {
   outline: none;
 }
 .list {
-  width: 600px;
+  width: 620px;
   margin: 0 auto;
-  margin-top: 100px;
+  margin-top: 50px;
+  max-height: 800px;
+  overflow-x: auto;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+  margin: 20px 0px 10px;
+}
+
+.imoortantList {
+  width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+  background-color: rgba(255, 0, 0, 0.567);
+  box-shadow: 10px 10px 2px 0px rgba(0, 0, 0, 0.2);
+  padding: 20px 0px;
+  max-height: 600px;
+  margin-right: 25px;
+  margin-top: 50px;
+}
+.list::-webkit-scrollbar-track {
+  border-radius: 4px;
+}
+.list::-webkit-scrollbar {
+  width: 6px;
+}
+.list::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: #f0f2f5;
+}
+.list:hover::-webkit-scrollbar-thumb {
+  background: #000000;
+}
+.imoortantList h2 {
+  font-size: 30px;
+  padding: 0px;
+  margin: 0px;
+  border-bottom: 2px solid black;
+}
+.futureTask {
+  border-radius: 20px;
+  padding: 20px 0px;
+  max-height: 600px;
+  overflow: auto;
+  margin-top: 50px;
+  width: 650px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 10px 10px 2px 0px rgba(0, 0, 0, 0.2);
+  background-color: rgba(45, 180, 31, 0.692);
+}
+.futureTask h2 {
+  font-size: 30px;
+  padding: 0px;
+  margin: 0px;
+  border-bottom: 2px solid black;
 }
 .task {
+  margin-top: 10px;
   width: 600px;
   min-height: 100px;
   display: grid;
@@ -82,10 +144,19 @@ body {
     margin-bottom: 20px;
   }
 }
+.info {
+  display: flex;
+  flex-direction: column;
+}
+.date {
+  margin: 5px;
+  display: inline;
+}
 .taskText {
   text-indent: 1.5em;
-  padding: 10px;
+  padding: 5px;
   word-wrap: break-word;
+  font-size: 18px;
 }
 .deleteTaskButton {
   min-height: 30px;
@@ -93,6 +164,10 @@ body {
   border: 0px;
   cursor: pointer;
   font-size: 20px;
+}
+.deleteTaskButton:hover {
+  transform: scale(1.05);
+  box-shadow: 3px 3px 2px 1px rgba(0, 0, 0, 0.2);
 }
 .deleteTask {
   display: flex;
@@ -124,18 +199,18 @@ select option[value="3"] {
 }
 
 .red {
-  background: rgba(191, 2, 2, 0.5);
+  background: rgb(213, 58, 58);
 }
 
 .green {
-  background: rgba(38, 142, 0, 0.5);
+  background: rgb(59, 207, 5);
 }
 .yellow {
-  background: rgba(192, 195, 0, 0.5);
+  background: rgb(207, 210, 29);
 }
 
 .deleteAnim {
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-name: deleteElem;
   animation-fill-mode: forwards;
 }
@@ -192,4 +267,10 @@ select option[value="3"] {
 }
 .trashAnim img {
   height: 150px;
+}
+
+.chill {
+  text-align: center;
+  font-size: 30px;
+  color: white;
 }

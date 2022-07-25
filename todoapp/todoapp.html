@@ -22,7 +22,7 @@
           />
         </div>
         <div class="block">
-          <label>Срочно?</label>
+          <label>Важно?</label>
           <select name="" id="selectHard">
             <option value="3">Дедлайн</option>
             <option value="2" selected>Надо</option>
@@ -30,13 +30,23 @@
           </select>
         </div>
         <div class="block">
+          <label>Когда надо</label>
+          <input type="date" name="" id="dateInput" />
+        </div>
+        <div class="block">
           <button id="sendToDo"><b>Добавить</b></button>
         </div>
       </div>
-      <div class="trash" id="trash">
-        <img src="../img/trash.png" alt="" />
+      <div class="todoshki">
+        <div class="imoortantList">
+          <h2>Сегодня</h2>
+          <div id="important" class="list"></div>
+        </div>
+        <div class="futureTask">
+          <h2>Предстоящие задачи</h2>
+          <div id="list" class="list"></div>
+        </div>
       </div>
-      <div id="list" class="list"></div>
     </div>
   </body>
   <script src="./todo.js"></script>

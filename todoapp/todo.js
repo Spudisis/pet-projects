@@ -2,7 +2,8 @@ const addTask = document.querySelector("#sendToDo");
 const todoAdd = document.querySelector("#todoAdd");
 const list = document.querySelector("#list");
 const select = document.querySelector("#selectHard");
-const trash = document.querySelector("#trash");
+const dateInput = document.querySelector("#dateInput");
+const important = document.querySelector("#important");
 let data;
 
 !localStorage.task
@@ -12,6 +13,9 @@ let data;
 function Todo(props) {
   this.description = props;
   this.completed = select.value;
+  dateInput.value
+    ? (this.date = dateInput.value)
+    : (this.date = new Date().toISOString().split("T")[0]);
 }
 addTask.addEventListener("click", () => {
   todoAdd.value ? addNewTask() : null;
@@ -34,13 +38,18 @@ const updateLocal = () => {
 
 const addList = () => {
   console.log(data);
+  todoAdd.focus();
   list.innerHTML = "";
+  important.innerHTML = "";
   let dataClone = data.slice();
   if (localStorage != 0) {
     dataClone.reverse().forEach((element, index) => {
-      list.innerHTML += createItem(element, index);
+      element.date != new Date().toISOString().split("T")[0]
+        ? (list.innerHTML += createItem(element, index))
+        : (important.innerHTML += createItem(element, index));
     });
   }
+  msgTaskNone();
 };
 
 const createItem = (element, index) => {
@@ -48,7 +57,10 @@ const createItem = (element, index) => {
   <div class='task ${
     element.completed == 1 ? "green" : element.completed == 2 ? "yellow" : "red"
   }' id='task${index}'>
-    <div class="taskText">${element.description}</div>
+    <div class='info'>
+      <div class="date">${element.date}</div>
+      <div class="taskText"><b>${element.description}</b></div>
+    </div>
     <div class='deleteTask'>
       <button onclick='deleteTask(${index})' class='deleteTaskButton'>Удалить</button>
     </div>
@@ -59,17 +71,23 @@ const createItem = (element, index) => {
 const deleteTask = (index) => {
   const delTask = document.querySelector("#task" + index);
   delTask.classList.add("deleteAnim");
-  console.log(delTask.offsetTop);
-  trash.className = "trashAnim";
-  // trash.style.bottom = delTask.offsetTop;
-  setTimeout(() => {
-    trash.className = "trash";
-  }, 2000);
   setTimeout(() => {
     data.splice(data.length - 1 - index, 1);
     updateLocal();
     addList();
-  }, 1000);
+  }, 500);
+};
+
+const msgTaskNone = () => {
+  !list.innerHTML && !important.innerHTML
+    ? (list.innerHTML += `<div class='chill'>Ты вообще что-то делаешь?</div>`)
+    : null;
+  !important.innerHTML
+    ? (important.innerHTML += `<div class='chill'>Сегодня задач нет, чилл</div>`)
+    : null;
+  !list.innerHTML
+    ? (list.innerHTML += `<div class='chill'>Добавим новых задач?</div>`)
+    : null;
 };
 
 addList();
