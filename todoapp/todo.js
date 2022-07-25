@@ -5,6 +5,11 @@ const select = document.querySelector("#selectHard");
 const dateInput = document.querySelector("#dateInput");
 const important = document.querySelector("#important");
 let data;
+let dateTime;
+console.log([1, 0, 1, 1].map(parseInt));
+const getDate = () => {
+  dateTime = new Date().toLocaleString().slice(0, 10);
+};
 
 !localStorage.task
   ? (data = [])
@@ -13,9 +18,9 @@ let data;
 function Todo(props) {
   this.description = props;
   this.completed = select.value;
-  dateInput.value
-    ? (this.date = dateInput.value)
-    : (this.date = new Date().toISOString().split("T")[0]);
+  dateInput.value.toLocaleString().slice(0, 10)
+    ? (this.date = new Date(dateInput.value).toLocaleString().slice(0, 10))
+    : (this.date = dateTime);
 }
 addTask.addEventListener("click", () => {
   todoAdd.value ? addNewTask() : null;
@@ -37,6 +42,7 @@ const updateLocal = () => {
 };
 
 const addList = () => {
+  getDate();
   console.log(data);
   todoAdd.focus();
   list.innerHTML = "";
@@ -44,7 +50,7 @@ const addList = () => {
   let dataClone = data.slice();
   if (localStorage != 0) {
     dataClone.reverse().forEach((element, index) => {
-      element.date != new Date().toISOString().split("T")[0]
+      element.date != dateTime
         ? (list.innerHTML += createItem(element, index))
         : (important.innerHTML += createItem(element, index));
     });
