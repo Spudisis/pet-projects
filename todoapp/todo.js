@@ -6,6 +6,9 @@ const dateInput = document.querySelector("#dateInput");
 const important = document.querySelector("#important");
 const tomorrowTaskList = document.querySelector("#tomorrowTaskList");
 const tooLate = document.querySelector("#tooLate");
+const plohImg = document.querySelector("#ploh");
+const plohText = document.querySelector("#ebattiplohText");
+const plohModal = document.querySelector("#modalPloh");
 
 let data;
 
@@ -171,6 +174,29 @@ const msgIfNoTask = () => {
   !tomorrowTaskList.innerHTML
     ? (tomorrowTaskList.innerHTML += `<div class='chill'>Завтра отдыхаем</div>`)
     : null;
+
+  updateImgPloh();
+};
+
+const updateImgPloh = () => {
+  if (tooLate.innerHTML) {
+    plohText.onmouseover = () => {
+      plohImg.style.display = "block";
+      plohModal.style.display = "block";
+    };
+    plohText.onmouseout = () => {
+      plohImg.style.display = "none";
+      plohModal.style.display = "none";
+    };
+  } else {
+    plohText.onmouseover = () => {
+      plohImg.style.display = "none";
+      plohModal.style.display = "none";
+    };
+    !tooLate.innerHTML
+      ? (tooLate.innerHTML += `<div class='chill'>Держи и дальше пустым</div>`)
+      : null;
+  }
 };
 
 dataVoidOrNot();
