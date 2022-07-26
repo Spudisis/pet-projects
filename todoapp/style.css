@@ -1,5 +1,5 @@
 body {
-  background-color: rgba(255, 157, 0, 0.604);
+  background-color: rgba(102, 100, 98, 0.477);
   overflow-x: hidden;
 }
 
@@ -17,11 +17,16 @@ body {
   justify-content: space-around;
   align-items: center;
   border-radius: 30px;
-  background-color: rgba(255, 157, 0, 0.604);
+  background-color: rgba(255, 157, 0, 1);
   box-shadow: 5px 5px 2px 1px rgba(0, 0, 0, 0.2);
   margin: 0 auto;
 }
 .todoshki {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.soonTask {
   display: flex;
 }
 .block {
@@ -63,7 +68,25 @@ body {
   border-bottom: 2px solid white;
   margin: 20px 0px 10px;
 }
-
+.tomorrowTask {
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+  background-color: rgba(255, 128, 0, 0.845);
+  box-shadow: 10px 10px 2px 0px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  max-height: 600px;
+  margin-right: 25px;
+  margin-top: 50px;
+}
+.tomorrowTask h2 {
+  font-size: 30px;
+  padding: 0px;
+  margin: 0px;
+  border-bottom: 2px solid black;
+}
 .imoortantList {
   max-width: 700px;
   display: flex;
@@ -117,7 +140,7 @@ body {
 }
 .task {
   margin-top: 10px;
-  width: 600px;
+  width: 500px;
   min-height: 100px;
   display: grid;
   grid-template-columns: 70% 30%;
@@ -206,7 +229,7 @@ select option[value="3"] {
   background: rgb(59, 207, 5);
 }
 .yellow {
-  background: rgb(207, 210, 29);
+  background: rgb(190, 193, 43);
 }
 
 .deleteAnim {
