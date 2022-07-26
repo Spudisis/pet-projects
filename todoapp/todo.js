@@ -76,9 +76,24 @@ const compareDate = (dateElement) => {
   ) {
     return true;
   }
-  return arrDateElem[1] <= arrDateNow[1] && arrDateElem[2] <= arrDateNow[2]
-    ? true
-    : false;
+  if (
+    arrDateElem[0] > arrDateNow[0] &&
+    arrDateElem[1] < arrDateNow[1] &&
+    arrDateElem[2] <= arrDateNow[2]
+  ) {
+    return true;
+  }
+  if (
+    arrDateElem[0] > arrDateNow[0] &&
+    arrDateElem[1] < arrDateNow[1] &&
+    arrDateElem[2] <= arrDateNow[2]
+  ) {
+    return true;
+  }
+  if (arrDateElem[2] < arrDateNow[2]) {
+    return true;
+  }
+  return false;
 };
 const addList = () => {
   console.log(data);
