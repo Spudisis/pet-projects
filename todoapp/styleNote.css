@@ -1,0 +1,9 @@
+.notes {
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  float: right;
+  top: 300px;
+  right: 200px;
+}

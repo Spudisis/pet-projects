@@ -8,8 +8,19 @@
     <link rel="stylesheet" href="../styles/normalize.css" />
     <link rel="stylesheet" href="../styles/style.css" />
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./styleNote.css" />
+    <link rel="stylesheet" href="./styleAve.css" />
   </head>
   <body>
+    <!-- <div class="notes"></div> -->
+    <!-- <div class="imagesAve">
+      <img src="./imgAve/1-240-128b.png" alt="" />
+      <img src="./imgAve/1-250-128b.png" alt="" />
+      <img src="./imgAve/1-252-128b.png" alt="" />
+      <img src="./imgAve/1-256-128b.png" alt="" />
+      <img src="./imgAve/1-257-128b.png" alt="" />
+      <img src="./imgAve/1-258-128b.png" alt="" />
+    </div> -->
     <div class="todo">
       <div class="todo__input">
         <div class="block">
@@ -37,23 +48,27 @@
           <button id="sendToDo"><b>Добавить</b></button>
         </div>
       </div>
+
       <div class="todoshki">
-        <div class="soonTask">
-          <div class="imoortantList">
-            <h2>Сегодня</h2>
-            <div id="important" class="list"></div>
-          </div>
-          <div class="tomorrowTask">
-            <h2>Завтра</h2>
-            <div id="tomorrowTaskList" class="list"></div>
-          </div>
+        <div class="imoortantList">
+          <h2>Сегодня</h2>
+          <div id="important" class="list"></div>
+        </div>
+        <div class="tomorrowTask">
+          <h2>Завтра</h2>
+          <div id="tomorrowTaskList" class="list"></div>
         </div>
         <div class="futureTask">
           <h2>Предстоящие задачи</h2>
           <div id="list" class="list"></div>
         </div>
+        <div class="futureTask">
+          <h2>Просрочено</h2>
+          <div id="tooLate" class="list"></div>
+        </div>
       </div>
     </div>
   </body>
   <script src="./todo.js"></script>
+  <script src="./archive.js"></script>
 </html>

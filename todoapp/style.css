@@ -1,10 +1,13 @@
 body {
-  background-color: rgba(102, 100, 98, 0.477);
+  background-color: #c0b8a3;
   overflow-x: hidden;
+  position: relative;
 }
-
+p {
+  font-size: 18px;
+}
 .todo {
-  max-width: 1280px;
+  max-width: 1440px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -17,14 +20,15 @@ body {
   justify-content: space-around;
   align-items: center;
   border-radius: 30px;
-  background-color: rgba(255, 157, 0, 1);
+  background-color: #98b8ab;
   box-shadow: 5px 5px 2px 1px rgba(0, 0, 0, 0.2);
   margin: 0 auto;
 }
 .todoshki {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 .soonTask {
   display: flex;
@@ -38,12 +42,12 @@ body {
   width: 100px;
   border-radius: 15px;
   border: none;
-  background-color: rgba(255, 157, 0, 0.853);
+  background-color: #98b8ab;
   cursor: pointer;
 }
 
 .block button:hover {
-  background-color: rgb(255, 111, 0);
+  background-color: #66b797;
   box-shadow: 5px 5px 2px 1px rgba(0, 0, 0, 0.2);
   transform: scale(1.1);
 }
@@ -59,27 +63,25 @@ body {
   outline: none;
 }
 .list {
-  max-width: 620px;
-  margin: 0 auto;
-  margin-top: 50px;
-  max-height: 800px;
+  max-width: 800px;
+  max-height: 250px;
   overflow-x: auto;
   border-top: 2px solid white;
   border-bottom: 2px solid white;
-  margin: 20px 0px 10px;
+  margin: 10px 0px;
 }
 .tomorrowTask {
   max-width: 700px;
+  min-width: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 20px;
-  background-color: rgba(255, 128, 0, 0.845);
+  background-color: #dca583;
   box-shadow: 10px 10px 2px 0px rgba(0, 0, 0, 0.2);
   padding: 20px;
-  max-height: 600px;
-  margin-right: 25px;
-  margin-top: 50px;
+  max-height: 300px;
+  margin-top: 20px;
 }
 .tomorrowTask h2 {
   font-size: 30px;
@@ -89,16 +91,16 @@ body {
 }
 .imoortantList {
   max-width: 700px;
+  min-width: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 20px;
-  background-color: rgba(255, 0, 0, 0.567);
+  background-color: #dda4b5;
   box-shadow: 10px 10px 2px 0px rgba(0, 0, 0, 0.2);
   padding: 20px;
-  max-height: 600px;
-  margin-right: 25px;
-  margin-top: 50px;
+  max-height: 300px;
+  margin-top: 25px;
 }
 .list::-webkit-scrollbar-track {
   border-radius: 4px;
@@ -122,15 +124,15 @@ body {
 .futureTask {
   border-radius: 20px;
   padding: 20px;
-  max-height: 600px;
-  overflow: auto;
-  margin-top: 50px;
-  max-width: 650px;
+  max-height: 300px;
+  margin-top: 20px;
+  max-width: 700px;
+  min-width: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-shadow: 10px 10px 2px 0px rgba(0, 0, 0, 0.2);
-  background-color: rgba(45, 180, 31, 0.692);
+  background-color: #9ebd82;
 }
 .futureTask h2 {
   font-size: 30px;
@@ -140,7 +142,8 @@ body {
 }
 .task {
   margin-top: 10px;
-  width: 500px;
+  max-width: 700px;
+  min-width: 600px;
   min-height: 100px;
   display: grid;
   grid-template-columns: 70% 30%;
@@ -179,7 +182,6 @@ body {
   text-indent: 1.5em;
   padding: 5px;
   word-wrap: break-word;
-  font-size: 18px;
 }
 .deleteTaskButton {
   min-height: 30px;
@@ -206,9 +208,7 @@ select {
   display: inline;
   cursor: pointer;
 }
-option {
-  min-height: 50px;
-}
+
 select option[value="1"] {
   background: rgba(38, 142, 0, 0.3);
 }
@@ -222,14 +222,14 @@ select option[value="3"] {
 }
 
 .red {
-  background: rgb(244, 132, 35);
+  background: #834b72;
 }
 
 .green {
-  background: rgb(59, 207, 5);
+  background: #849746;
 }
 .yellow {
-  background: rgb(190, 193, 43);
+  background: #978348;
 }
 
 .deleteAnim {
@@ -237,59 +237,23 @@ select option[value="3"] {
   animation-name: deleteElem;
   animation-fill-mode: forwards;
 }
+
 @keyframes deleteElem {
-  from {
-  }
-
-  to {
-    min-height: 80px;
-    margin-left: 700px;
-  }
-}
-
-.trash {
-  display: none;
-}
-.trashAnim {
-  animation-duration: 2s;
-  animation-name: trashAnimation;
-  animation-fill-mode: forwards;
-}
-@keyframes trashAnimation {
   0% {
-    display: block;
-    position: absolute;
-    bottom: 0px;
-    right: 50px;
-    z-index: 10;
   }
-
-  50% {
-    right: 0px;
-    display: block;
-    position: absolute;
-    bottom: 500px;
-    z-index: 10;
-    transform: rotate(-90deg);
-  }
-  99% {
-    display: block;
-    position: absolute;
-    bottom: -100px;
-    right: 0px;
-    z-index: 10;
-    transform: rotate(-600deg);
+  25% {
+    padding: 2px 2px 0px;
+    margin: 0px;
+    border-radius: 0px 0px 20px 20px;
   }
   100% {
-    position: absolute;
-    bottom: -100px;
-    right: 0px;
-    z-index: 10;
-    display: none;
+    border-radius: 0px 0px 20px 20px;
+    padding: 2px 2px 0px;
+    min-height: 0px;
+    max-height: 0px;
+    font-size: 2px;
+    margin: 0px;
   }
-}
-.trashAnim img {
-  height: 150px;
 }
 
 .chill {
@@ -298,7 +262,7 @@ select option[value="3"] {
   color: white;
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1000px) {
   .todoshki {
     display: block;
   }

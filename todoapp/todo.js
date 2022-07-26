@@ -5,30 +5,10 @@ const select = document.querySelector("#selectHard");
 const dateInput = document.querySelector("#dateInput");
 const important = document.querySelector("#important");
 const tomorrowTaskList = document.querySelector("#tomorrowTaskList");
+const tooLate = document.querySelector("#tooLate");
 
 let data;
 
-function isPrime(num) {
-  if (num >= 2) {
-    let summ = 0;
-    for (let i = 1; i <= num; i++) {
-      if (num / i == Math.round(num / i)) {
-        summ++;
-        console.log(i, "yes");
-      }
-    }
-    console.log(summ);
-    if (summ > 2) {
-      return false;
-    } else {
-      return true;
-    }
-  } else {
-    return false;
-  }
-}
-
-console.log(isPrime(4));
 const getDateNew = (day) => {
   let dateTime = new Date().toLocaleString().slice(0, 10);
   if (day !== 0) {
@@ -45,8 +25,17 @@ const dataVoidOrNot = () => {
     ? (data = [])
     : (data = JSON.parse(localStorage.getItem("task")));
   addList();
+  checkNewDayUpdate(getDateNew(1));
 };
-
+const checkNewDayUpdate = (date) => {
+  let timer = setInterval(() => {
+    let a = getDateNew(0);
+    if (date == a) {
+      dataVoidOrNot();
+      clearInterval(timer);
+    }
+  }, 1000);
+};
 function Todo(props) {
   this.description = props;
   this.completed = select.value;
@@ -79,6 +68,7 @@ const addList = () => {
   list.innerHTML = "";
   important.innerHTML = "";
   tomorrowTaskList.innerHTML = "";
+  tooLate.innerHTML = "";
   let dataClone = data.slice();
   if (localStorage != 0) {
     dataClone.reverse().forEach((element, index) => {
@@ -86,21 +76,34 @@ const addList = () => {
         ? (important.innerHTML += createItem(element, index))
         : element.date === getDateNew(1)
         ? (tomorrowTaskList.innerHTML += createItem(element, index))
+        : element.date < getDateNew(0)
+        ? (tooLate.innerHTML += createItem(element, index))
         : (list.innerHTML += createItem(element, index));
     });
   }
   msgIfNoTask();
+  checkNullImportant();
 };
 const deleteTask = (index) => {
-  const delTask = document.querySelector("#task" + index);
-  delTask.classList.add("deleteAnim");
+  deleteTaskStyles(index);
   setTimeout(() => {
     data.splice(data.length - 1 - index, 1);
     updateLocal();
     addList();
   }, 500);
 };
-
+const deleteTaskStyles = (index) => {
+  const delTask = document.querySelector("#task" + index);
+  const delTaskText = document.querySelector("#task" + index + " .taskText p");
+  const delTaskDate = document.querySelector("#task" + index + " .date");
+  const delTaskInfo = document.querySelector("#task" + index + " .info");
+  const deleteButton = document.querySelector("#task" + index + " .deleteTask");
+  delTask.classList.add("deleteAnim");
+  delTaskText.remove();
+  delTaskDate.remove();
+  delTaskInfo.remove();
+  deleteButton.remove();
+};
 const createItem = (element, index) => {
   return `
   <div class='task ${
@@ -108,7 +111,7 @@ const createItem = (element, index) => {
   }' id='task${index}'>
     <div class='info'>
       <div class="date">${element.date}</div>
-      <div class="taskText"><b>${element.description}</b></div>
+      <div class="taskText"><p>${element.description}</p></div>
     </div>
     <div class='deleteTask'>
       <button onclick='deleteTask(${index})' class='deleteTaskButton'>Удалить</button>
@@ -116,6 +119,10 @@ const createItem = (element, index) => {
     
   </div>
   `;
+};
+const checkNullImportant = () => {
+  if (!important.innerHTML) {
+  }
 };
 
 const msgIfNoTask = () => {
