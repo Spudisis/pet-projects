@@ -9,13 +9,24 @@ const tooLate = document.querySelector("#tooLate");
 
 let data;
 
+addTask.addEventListener("click", () => {
+  todoAdd.value ? addNewTask() : null;
+  todoAdd.value = "";
+});
+
+todoAdd.addEventListener("keydown", (e) => {
+  e.keyCode === 13 && todoAdd.value ? addNewTask() : null;
+});
+function pad(s, width, character) {
+  return new Array(width - s.toString().length + 1).join(character) + s;
+}
 const getDateNew = (day) => {
   let dateTime = new Date().toLocaleString().slice(0, 10);
   if (day !== 0) {
     let dat = new Date();
-    let mm = dat.getMonth() + 1;
-    if (mm < 10) mm = "0" + mm;
-    dateTime = +(dat.getDate() + 1) + "." + mm + "." + dat.getFullYear();
+    dat.setDate(dat.getDate() + 1);
+    dateTime = dat.toLocaleString().slice(0, 10);
+    console.log(dateTime);
   }
   return dateTime;
 };
@@ -43,13 +54,6 @@ function Todo(props) {
     ? (this.date = new Date(dateInput.value).toLocaleString().slice(0, 10))
     : (this.date = getDateNew(0));
 }
-addTask.addEventListener("click", () => {
-  todoAdd.value ? addNewTask() : null;
-  todoAdd.value = "";
-});
-todoAdd.addEventListener("keydown", (e) => {
-  e.keyCode === 13 && todoAdd.value ? addNewTask() : null;
-});
 
 const addNewTask = () => {
   data.push(new Todo(todoAdd.value));
@@ -61,7 +65,21 @@ const updateLocal = () => {
   localStorage.setItem("task", JSON.stringify(data));
   addList();
 };
-
+const compareDate = (dateElement) => {
+  let arrDateElem = dateElement.split(".");
+  let arrDateNow = getDateNew(0).split(".");
+  console.log(arrDateElem, arrDateNow);
+  if (
+    arrDateElem[0] < arrDateNow[0] &&
+    arrDateElem[1] <= arrDateNow[1] &&
+    arrDateElem[2] <= arrDateNow[2]
+  ) {
+    return true;
+  }
+  return arrDateElem[1] <= arrDateNow[1] && arrDateElem[2] <= arrDateNow[2]
+    ? true
+    : false;
+};
 const addList = () => {
   console.log(data);
   todoAdd.focus();
@@ -76,7 +94,7 @@ const addList = () => {
         ? (important.innerHTML += createItem(element, index))
         : element.date === getDateNew(1)
         ? (tomorrowTaskList.innerHTML += createItem(element, index))
-        : element.date < getDateNew(0)
+        : compareDate(element.date)
         ? (tooLate.innerHTML += createItem(element, index))
         : (list.innerHTML += createItem(element, index));
     });
