@@ -32,16 +32,18 @@ const checkEmpty = () => {
     ? (dataArchive = [])
     : (dataArchive = JSON.parse(localStorage.getItem("archive")));
 };
-
-const fillDataArchive = (state) => {
-  checkEmpty();
-  listArchiveTask.innerHTML = "";
+const changeStyleButtonsArchive = () => {
   ArchivePageState
     ? (yepArchive.className = "yepArchiveActive")
     : (nopeArchive.className = "nopeArchiveActive");
   ArchivePageState
     ? (nopeArchive.className = "nopeArchive")
     : (yepArchive.className = "yepArchive");
+};
+const fillDataArchive = (state) => {
+  checkEmpty();
+  changeStyleButtonsArchive();
+  listArchiveTask.innerHTML = "";
   let dataCloneArchive = dataArchive.slice();
   if (localStorage.archive) {
     dataCloneArchive.reverse().forEach((element, index) => {
@@ -75,6 +77,8 @@ const closeModalWindow = (e) => {
   if (target == modalArchive) {
     modalArchive.style.display = "none";
     plohText.style.zIndex = "1";
+    ArchivePageState = true;
+    changeStyleButtonsArchive();
   }
 };
 archiveOpenButton.addEventListener("click", openModalWindow);
