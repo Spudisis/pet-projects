@@ -20,27 +20,13 @@ addTask.addEventListener("click", () => {
 todoAdd.addEventListener("keydown", (e) => {
   e.keyCode === 13 && todoAdd.value ? addNewTask() : null;
 });
-function pad(s, width, character) {
-  return new Array(width - s.toString().length + 1).join(character) + s;
-}
-const getDateNew = (day) => {
-  let dateTime = new Date().toLocaleString().slice(0, 10);
-  if (day !== 0) {
-    let dat = new Date();
-    dat.setDate(dat.getDate() + 1);
-    dateTime = dat.toLocaleString().slice(0, 10);
-    console.log(dateTime);
-  }
-  return dateTime;
-};
 
 const dataVoidOrNot = () => {
   !localStorage.task
     ? (data = [])
     : (data = JSON.parse(localStorage.getItem("task")));
-  addList();
-  checkNewDayUpdate(getDateNew(1));
 };
+
 const checkNewDayUpdate = (date) => {
   let timer = setInterval(() => {
     let a = getDateNew(0);
@@ -50,9 +36,10 @@ const checkNewDayUpdate = (date) => {
     }
   }, 1000);
 };
+
 function Todo(props) {
   this.description = props;
-  this.completed = select.value;
+  this.hard = select.value;
   dateInput.value.toLocaleString().slice(0, 10)
     ? (this.date = new Date(dateInput.value).toLocaleString().slice(0, 10))
     : (this.date = getDateNew(0));
@@ -60,18 +47,41 @@ function Todo(props) {
 
 const addNewTask = () => {
   data.push(new Todo(todoAdd.value));
-  updateLocal();
+  updateLocal("task");
   todoAdd.value = "";
 };
 
-const updateLocal = () => {
-  localStorage.setItem("task", JSON.stringify(data));
+const updateLocal = (props) => {
+  localStorage.setItem(props, JSON.stringify(data));
   addList();
 };
+
+const addList = () => {
+  console.log(data);
+  todoAdd.focus();
+  list.innerHTML = "";
+  important.innerHTML = "";
+  tomorrowTaskList.innerHTML = "";
+  tooLate.innerHTML = "";
+  let dataClone = data.slice();
+  if (localStorage.task) {
+    dataClone.reverse().forEach((element, index) => {
+      element.date === getDateNew(0)
+        ? (important.innerHTML += createItem(element, index))
+        : element.date === getDateNew(1)
+        ? (tomorrowTaskList.innerHTML += createItem(element, index))
+        : compareDate(element.date)
+        ? (tooLate.innerHTML += createItem(element, index))
+        : (list.innerHTML += createItem(element, index));
+    });
+  }
+  msgIfNoTask();
+  checkNullImportant();
+};
+
 const compareDate = (dateElement) => {
   let arrDateElem = dateElement.split(".");
   let arrDateNow = getDateNew(0).split(".");
-  console.log(arrDateElem, arrDateNow);
   if (
     arrDateElem[0] < arrDateNow[0] &&
     arrDateElem[1] <= arrDateNow[1] &&
@@ -98,33 +108,12 @@ const compareDate = (dateElement) => {
   }
   return false;
 };
-const addList = () => {
-  console.log(data);
-  todoAdd.focus();
-  list.innerHTML = "";
-  important.innerHTML = "";
-  tomorrowTaskList.innerHTML = "";
-  tooLate.innerHTML = "";
-  let dataClone = data.slice();
-  if (localStorage != 0) {
-    dataClone.reverse().forEach((element, index) => {
-      element.date === getDateNew(0)
-        ? (important.innerHTML += createItem(element, index))
-        : element.date === getDateNew(1)
-        ? (tomorrowTaskList.innerHTML += createItem(element, index))
-        : compareDate(element.date)
-        ? (tooLate.innerHTML += createItem(element, index))
-        : (list.innerHTML += createItem(element, index));
-    });
-  }
-  msgIfNoTask();
-  checkNullImportant();
-};
+
 const deleteTask = (index) => {
   deleteTaskStyles(index);
   setTimeout(() => {
     data.splice(data.length - 1 - index, 1);
-    updateLocal();
+    updateLocal("task");
     addList();
   }, 500);
 };
@@ -143,14 +132,19 @@ const deleteTaskStyles = (index) => {
 const createItem = (element, index) => {
   return `
   <div class='task ${
-    element.completed == 1 ? "green" : element.completed == 2 ? "yellow" : "red"
+    element.hard == 1 ? "green" : element.hard == 2 ? "yellow" : "red"
   }' id='task${index}'>
     <div class='info'>
       <div class="date">${element.date}</div>
       <div class="taskText"><p>${element.description}</p></div>
     </div>
     <div class='deleteTask'>
-      <button onclick='deleteTask(${index})' class='deleteTaskButton'>Удалить</button>
+    ${
+      !compareDate(element.date)
+        ? `<button onclick='confirmTask(${index})' class='deleteTaskButton'><img src="./imgAve/completeTask.png" alt="add"></button>`
+        : ""
+    }
+      <button onclick='deleteTaskToArchive(${index});' class='deleteTaskButton'><img src="./imgAve/deleteTask.png" alt="delete"></button>
     </div>
     
   </div>
@@ -199,4 +193,9 @@ const updateImgPloh = () => {
   }
 };
 
-dataVoidOrNot();
+const checkData = async () => {
+  await dataVoidOrNot();
+  await addList();
+  await checkNewDayUpdate(getDateNew(1));
+};
+checkData();

@@ -1,0 +1,51 @@
+.deleteTaskButton {
+  margin-left: 10px;
+  min-height: 30px;
+  border-radius: 5px;
+  border: 0px;
+  cursor: pointer;
+  font-size: 20px;
+  background: transparent;
+}
+.deleteTaskButton:hover {
+  transform: scale(1.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.185);
+  border-left: 1px solid rgba(0, 0, 0, 0.185);
+  border-right: 1px solid rgba(0, 0, 0, 0.462);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.462);
+  box-shadow: 3px 3px 2px 1px rgba(0, 0, 0, 0.453);
+}
+.deleteTask {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.deleteTaskButton img {
+  margin-top: 5px;
+  width: 50px;
+  height: 50px;
+}
+
+.deleteTaskButton img:hover {
+  animation-delay: 0.5s;
+  animation-duration: 3s;
+  animation-name: delImgAnim;
+  animation-iteration-count: infinite;
+}
+@keyframes delImgAnim {
+  0% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(20deg);
+  }
+  60% {
+    transform: rotate(360deg);
+  }
+  90% {
+    transform: rotate(380deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

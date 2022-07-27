@@ -7,9 +7,12 @@
     <title>todoapp</title>
     <link rel="stylesheet" href="../styles/normalize.css" />
     <link rel="stylesheet" href="../styles/style.css" />
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="./styleNote.css" />
-    <link rel="stylesheet" href="./styleAve.css" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/styleNote.css" />
+    <link rel="stylesheet" href="./styles/styleAve.css" />
+    <link rel="stylesheet" href="./styles/tomorrowTask.css" />
+    <link rel="stylesheet" href="./styles/buttonsTask.css" />
+    <link rel="stylesheet" href="./styles/archiveModal.css" />
   </head>
   <body>
     <div class="modalPloh" id="modalPloh">
@@ -20,16 +23,16 @@
         id="ploh"
       />
     </div>
-
-    <!-- <div class="notes"></div> -->
-    <!-- <div class="imagesAve">
-      <img src="./imgAve/1-240-128b.png" alt="" />
-      <img src="./imgAve/1-250-128b.png" alt="" />
-      <img src="./imgAve/1-252-128b.png" alt="" />
-      <img src="./imgAve/1-256-128b.png" alt="" />
-      <img src="./imgAve/1-257-128b.png" alt="" />
-      <img src="./imgAve/1-258-128b.png" alt="" />
-    </div> -->
+    <div class="modalArchive" id="modalArchive">
+      <div class="mainWindowArchive">
+        <h2>Архив</h2>
+        <div class="buttonsArchive">
+          <button class="yepArchive" id="yepArchive">Выполненные</button
+          ><button class="nopeArchive" id="nopeArchive">Удаленные</button>
+        </div>
+        <div class="listArchiveTask" id="listArchiveTask"></div>
+      </div>
+    </div>
     <div class="todo">
       <div class="todo__input">
         <div class="block">
@@ -54,8 +57,11 @@
           <input type="date" name="" id="dateInput" />
         </div>
         <div class="block">
-          <button id="sendToDo"><b>Добавить</b></button>
+          <button id="sendToDo"><b>Добавить задачу</b></button>
         </div>
+        <button id="archiveOpenButton">
+          <b>Архив дел</b>
+        </button>
       </div>
 
       <div class="todoshki">
@@ -78,6 +84,7 @@
       </div>
     </div>
   </body>
+  <script src="./main.js"></script>
   <script src="./todo.js"></script>
   <script src="./archive.js"></script>
 </html>

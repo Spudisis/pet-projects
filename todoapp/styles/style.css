@@ -14,15 +14,43 @@ p {
   align-items: center;
 }
 .todo__input {
-  width: 800px;
+  width: 900px;
   height: 200px;
   display: flex;
   justify-content: space-around;
+  margin: 0px 10px;
   align-items: center;
   border-radius: 30px;
   background-color: #98b8ab;
   box-shadow: 5px 5px 2px 1px rgba(0, 0, 0, 0.2);
   margin: 0 auto;
+}
+.inputSendTask {
+  width: 800px;
+  height: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 30px;
+}
+.buttonsTop {
+  display: flex;
+  width: 100%;
+  justify-content: right;
+}
+#archiveOpenButton {
+  margin: 0px 20px;
+  height: 50px;
+  width: 100px;
+  border-radius: 15px;
+  border: none;
+  background-color: #58bc94;
+  cursor: pointer;
+}
+#archiveOpenButton:hover {
+  background-color: #31e99f;
+  box-shadow: 5px 5px 2px 1px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
 }
 .todoshki {
   display: flex;
@@ -42,12 +70,12 @@ p {
   width: 100px;
   border-radius: 15px;
   border: none;
-  background-color: #98b8ab;
+  background-color: #58bc94;
   cursor: pointer;
 }
 
 .block button:hover {
-  background-color: #66b797;
+  background-color: #31e99f;
   box-shadow: 5px 5px 2px 1px rgba(0, 0, 0, 0.2);
   transform: scale(1.1);
 }
@@ -70,25 +98,7 @@ p {
   border-bottom: 2px solid white;
   margin: 10px 0px;
 }
-.tomorrowTask {
-  max-width: 700px;
-  min-width: 600px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 20px;
-  background-color: #dca583;
-  box-shadow: 10px 10px 2px 0px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  max-height: 300px;
-  margin-top: 20px;
-}
-.tomorrowTask h2 {
-  font-size: 30px;
-  padding: 0px;
-  margin: 0px;
-  border-bottom: 2px solid black;
-}
+
 .imoortantList {
   max-width: 700px;
   min-width: 600px;
@@ -146,8 +156,10 @@ p {
 .ebattiploh {
   position: fixed;
   height: 400px;
-  top: 27%;
-  left: 35%;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
   display: none;
   z-index: 3;
 }
@@ -204,22 +216,7 @@ p {
   padding: 5px;
   word-wrap: break-word;
 }
-.deleteTaskButton {
-  min-height: 30px;
-  border-radius: 5px;
-  border: 0px;
-  cursor: pointer;
-  font-size: 20px;
-}
-.deleteTaskButton:hover {
-  transform: scale(1.05);
-  box-shadow: 3px 3px 2px 1px rgba(0, 0, 0, 0.2);
-}
-.deleteTask {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 select {
   width: 150px;
   outline: none;

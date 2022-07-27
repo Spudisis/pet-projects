@@ -1,0 +1,116 @@
+.modalArchive {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.441);
+}
+.mainWindowArchive {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 750px;
+  height: 70%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  z-index: 7;
+  background-color: #dda4b5;
+  border-radius: 20px;
+  box-shadow: 10px 10px 5px 2px rgba(0, 0, 0, 0.441);
+}
+.mainWindowArchive h2 {
+  position: absolute;
+  top: 1%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  border-bottom: 2px solid black;
+}
+.listArchiveTask {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  width: 700px;
+  height: 80%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+  z-index: 8;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.buttonsArchive {
+  position: absolute;
+  top: 11%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+.yepArchive {
+  border-radius: 10px 0px 0px 10px;
+  background-color: #849746;
+  border: none;
+  height: 35px;
+  font-size: 25px;
+  cursor: pointer;
+  width: 200px;
+  box-shadow: 3px 5px 3px 1px rgba(0, 0, 0, 0.441);
+}
+.yepArchive:hover {
+  background-color: #b3cd5f;
+}
+
+.yepArchiveActive {
+  border-radius: 10px 0px 0px 10px;
+  background-color: #b3cd5f;
+  transform: scale(1.1);
+  border: none;
+  height: 35px;
+  font-size: 25px;
+  cursor: pointer;
+  width: 200px;
+  box-shadow: 3px 5px 3px 1px rgba(0, 0, 0, 0.441);
+}
+.nopeArchive {
+  border-radius: 0px 10px 10px 0px;
+  background-color: #834b72;
+  border: none;
+  height: 35px;
+  width: 200px;
+  font-size: 25px;
+  cursor: pointer;
+  box-shadow: 5px 5px 3px 1px rgba(0, 0, 0, 0.441);
+}
+.nopeArchiveActive {
+  border-radius: 0px 10px 10px 0px;
+  background-color: #c65ca6;
+  transform: scale(1.1);
+  border: none;
+  height: 35px;
+  width: 200px;
+  font-size: 25px;
+  cursor: pointer;
+  box-shadow: 5px 5px 3px 1px rgba(0, 0, 0, 0.441);
+}
+.nopeArchive:hover {
+  background-color: #c65ca6;
+}
+
+.listArchiveTask::-webkit-scrollbar-track {
+  border-radius: 4px;
+}
+.listArchiveTask::-webkit-scrollbar {
+  width: 6px;
+}
+.listArchiveTask::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: #f0f2f5;
+}
+.listArchiveTask:hover::-webkit-scrollbar-thumb {
+  background: #000000;
+}
