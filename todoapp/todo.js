@@ -9,6 +9,8 @@ const tooLate = document.querySelector("#tooLate");
 const plohImg = document.querySelector("#ploh");
 const plohText = document.querySelector("#ebattiplohText");
 const plohModal = document.querySelector("#modalPloh");
+const justDoIt = document.querySelector("#justDoIt");
+const justDoItImg = document.querySelector("#justDoItImg");
 
 let data;
 
@@ -34,7 +36,7 @@ const checkNewDayUpdate = (date) => {
       dataVoidOrNot();
       clearInterval(timer);
     }
-  }, 1000);
+  }, 10000);
 };
 
 function Todo(props) {
@@ -159,9 +161,6 @@ const msgIfNoTask = () => {
   !list.innerHTML && !important.innerHTML && !tomorrowTaskList.innerHTML
     ? (list.innerHTML += `<div class='chill'>Ты вообще что-то делаешь?</div>`)
     : null;
-  !important.innerHTML
-    ? (important.innerHTML += `<div class='chill'>Сегодня задач нет, чилл</div>`)
-    : null;
   !list.innerHTML
     ? (list.innerHTML += `<div class='chill'>Добавим новых задач?</div>`)
     : null;
@@ -170,6 +169,7 @@ const msgIfNoTask = () => {
     : null;
 
   updateImgPloh();
+  updateImgJustDoIt();
 };
 
 const updateImgPloh = () => {
@@ -177,18 +177,45 @@ const updateImgPloh = () => {
     plohText.onmouseover = () => {
       plohImg.style.display = "block";
       plohModal.style.display = "block";
+      plohText.style.zIndex = "5";
     };
     plohText.onmouseout = () => {
       plohImg.style.display = "none";
       plohModal.style.display = "none";
+      plohText.style.zIndex = "0";
     };
   } else {
     plohText.onmouseover = () => {
       plohImg.style.display = "none";
       plohModal.style.display = "none";
+      plohText.style.zIndex = "0";
     };
     !tooLate.innerHTML
       ? (tooLate.innerHTML += `<div class='chill'>Держи и дальше пустым</div>`)
+      : null;
+  }
+};
+
+const updateImgJustDoIt = () => {
+  if (important.innerHTML) {
+    justDoIt.onmouseover = () => {
+      justDoIt.style.zIndex = "5";
+      justDoItImg.style.display = "block";
+      plohModal.style.display = "block";
+    };
+    justDoIt.onmouseout = () => {
+      justDoIt.style.zIndex = "0";
+      justDoItImg.style.display = "none";
+      plohModal.style.display = "none";
+    };
+  } else {
+    justDoIt.onmouseover = () => {
+      justDoIt.style.zIndex = "0";
+      justDoItImg.style.display = "none";
+      plohModal.style.display = "none";
+    };
+    !important.innerHTML
+      ? (important.innerHTML += `<div class='chill'>Сегодня задач нет, чилл</div>`)
       : null;
   }
 };

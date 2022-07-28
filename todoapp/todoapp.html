@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./styles/tomorrowTask.css" />
     <link rel="stylesheet" href="./styles/buttonsTask.css" />
     <link rel="stylesheet" href="./styles/archiveModal.css" />
+    <link rel="stylesheet" href="./styles/modalH.css" />
   </head>
   <body>
     <div class="modalPloh" id="modalPloh">
@@ -22,14 +23,26 @@
         alt="ploh"
         id="ploh"
       />
+      <img
+        src="./imgAve/justDoIt.gif"
+        alt="justDoIt"
+        id="justDoItImg"
+        class="justDoIt"
+      />
     </div>
     <div class="modalArchive" id="modalArchive">
       <div class="mainWindowArchive">
         <h2>Архив</h2>
+        <button class="clearArchive" id="clearArchiveYep">
+          Очистить хранилище
+        </button>
         <div class="buttonsArchive">
           <button class="yepArchive" id="yepArchive">Выполненные</button
           ><button class="nopeArchive" id="nopeArchive">Удаленные</button>
         </div>
+        <button class="clearArchive" id="clearArchiveNope">
+          Очистить хранилище
+        </button>
         <div class="listArchiveTask" id="listArchiveTask"></div>
       </div>
     </div>
@@ -66,7 +79,7 @@
 
       <div class="todoshki">
         <div class="imoortantList">
-          <h2>Сегодня</h2>
+          <h2 id="justDoIt">Сегодня</h2>
           <div id="important" class="list"></div>
         </div>
         <div class="tomorrowTask">

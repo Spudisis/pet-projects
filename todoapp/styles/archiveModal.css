@@ -13,7 +13,7 @@
   top: 50%;
   left: 50%;
   width: 750px;
-  height: 70%;
+  height: 80%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
   z-index: 7;
@@ -43,6 +43,12 @@
   z-index: 8;
   overflow-x: hidden;
   overflow-y: auto;
+}
+.listArchiveTaskImg {
+  width: 100%;
+  height: 99%;
+  margin: 0px;
+  padding: 0px;
 }
 .buttonsArchive {
   position: absolute;
@@ -100,7 +106,36 @@
 .nopeArchive:hover {
   background-color: #c65ca6;
 }
-
+.clearArchive {
+  width: 100px;
+  margin: 0px 30px;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  position: inherit;
+  top: 8.5%;
+  box-shadow: 5px 5px 3px 1px rgba(0, 0, 0, 0.441);
+}
+.clearArchiveNone {
+  display: none;
+}
+#clearArchiveYep {
+  background-color: #849746;
+  left: auto;
+}
+#clearArchiveYep:hover {
+  transform: scale(1.1);
+  background-color: #b3cd5f;
+}
+#clearArchiveNope {
+  background-color: #834b72;
+  left: 79%;
+}
+#clearArchiveNope:hover {
+  transform: scale(1.1);
+  background-color: #c65ca6;
+}
 .listArchiveTask::-webkit-scrollbar-track {
   border-radius: 4px;
 }

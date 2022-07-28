@@ -3,8 +3,14 @@ const archiveOpenButton = document.querySelector("#archiveOpenButton");
 const listArchiveTask = document.querySelector("#listArchiveTask");
 const yepArchive = document.querySelector("#yepArchive");
 const nopeArchive = document.querySelector("#nopeArchive");
+const clearArchiveYep = document.querySelector("#clearArchiveYep");
+const clearArchiveNope = document.querySelector("#clearArchiveNope");
+
 let dataArchive;
 let ArchivePageState = true;
+let newDataArchive;
+let checkArchivePageState;
+
 function Archive(props, state) {
   this.description = props.description;
   this.hard = props.hard;
@@ -12,12 +18,16 @@ function Archive(props, state) {
   this.stateConfirm = state;
 }
 const confirmTask = (index) => {
-  let newDataArchive = data[data.length - 1 - index];
+  index === data.length
+    ? (newDataArchive = data[data.length - index])
+    : (newDataArchive = data[data.length - 1 - index]);
   dataArchive.push(new Archive(newDataArchive, true));
   afterSetNewArchive(index);
 };
 const deleteTaskToArchive = (index) => {
-  let newDataArchive = data[data.length - 1 - index];
+  index === data.length
+    ? (newDataArchive = data[data.length - index])
+    : (newDataArchive = data[data.length - 1 - index]);
   dataArchive.push(new Archive(newDataArchive, false));
   afterSetNewArchive(index);
 };
@@ -40,20 +50,53 @@ const changeStyleButtonsArchive = () => {
     ? (nopeArchive.className = "nopeArchive")
     : (yepArchive.className = "yepArchive");
 };
+
+const changeStyleButtonsArchiveClear = () => {
+  ArchivePageState
+    ? (clearArchiveYep.className = "clearArchive")
+    : (clearArchiveNope.className = "clearArchive");
+  ArchivePageState
+    ? (clearArchiveNope.className = "clearArchiveNone")
+    : (clearArchiveYep.className = "clearArchiveNone");
+};
 const fillDataArchive = (state) => {
   checkEmpty();
   changeStyleButtonsArchive();
-  listArchiveTask.innerHTML = "";
+  changeStyleButtonsArchiveClear();
   let dataCloneArchive = dataArchive.slice();
-  if (localStorage.archive) {
+  if (localStorage.archive && checkArchivePageState != state) {
+    listArchiveTask.innerHTML = "";
     dataCloneArchive.reverse().forEach((element, index) => {
       element.stateConfirm == state
         ? (listArchiveTask.innerHTML += createItemArchiveTrue(element, index))
         : false;
     });
   }
+  checkArchivePageState = state;
+  checkEmptyArchive();
 };
 
+const clearArchive = (state) => {
+  if (localStorage.archive) {
+    listArchiveTask.innerHTML = "";
+    let pageTodo = [];
+    let dataCloneArchive = dataArchive.slice();
+    dataCloneArchive.forEach((element, index) => {
+      element.stateConfirm == state ? pageTodo.push(index) : false;
+    });
+    pageTodo.reverse().forEach((element, index) => {
+      dataCloneArchive.splice(element, 1);
+    });
+    localStorage.setItem("archive", JSON.stringify(dataCloneArchive));
+    checkEmptyArchive();
+  }
+};
+const checkEmptyArchive = () => {
+  !listArchiveTask.innerHTML
+    ? (listArchiveTask.innerHTML +=
+        "<img src='./imgAve/hereTooVoid.jpg' alt='hereTooVoid' class='listArchiveTaskImg'/>")
+    : false;
+};
 const createItemArchiveTrue = (element, index) => {
   return `
   <div class='task ${
@@ -79,6 +122,7 @@ const closeModalWindow = (e) => {
     plohText.style.zIndex = "1";
     ArchivePageState = true;
     changeStyleButtonsArchive();
+    changeStyleButtonsArchiveClear();
   }
 };
 archiveOpenButton.addEventListener("click", openModalWindow);
@@ -90,5 +134,11 @@ yepArchive.addEventListener("click", () => {
 nopeArchive.addEventListener("click", () => {
   ArchivePageState = false;
   fillDataArchive(false);
+});
+clearArchiveYep.addEventListener("click", () => {
+  clearArchive(ArchivePageState);
+});
+clearArchiveNope.addEventListener("click", () => {
+  clearArchive(ArchivePageState);
 });
 checkEmpty();

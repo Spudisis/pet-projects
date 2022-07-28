@@ -150,29 +150,7 @@ p {
   margin: 0px;
   border-bottom: 2px solid black;
 }
-#ebattiplohText {
-  z-index: 1;
-}
-.ebattiploh {
-  position: fixed;
-  height: 400px;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-  display: none;
-  z-index: 3;
-}
-.modalPloh {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.441);
-}
+
 .task {
   margin-top: 10px;
   max-width: 700px;
